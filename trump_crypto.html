@@ -50,21 +50,21 @@ const secondsInYear = 31536000; // 365 days in a year * 24 hours in a day * 60 m
                                 // in 1 month T-bills
 const oneMonthTBillRate = .0445; // pulling from here https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2025
 const perSecondRate = oneMonthTBillRate / secondsInYear
-let stableCoinPrinciple = 0;
-const qatariStableCoinPurchase = 2000000000; // www.nytimes.com/2025/05/01/us/politics/trump-cryptocurrency-usd1-dubai-conference-announcement.html
+let stableCoinPrinciple = 0.0;
+const qatariStableCoinPurchase =  2000000000; //2204586586.0;// 2000000000; // www.nytimes.com/2025/05/01/us/politics/trump-cryptocurrency-usd1-dubai-conference-announcement.html
 const qatariPurchaseDate = new Date('2025.05.01'); // www.nytimes.com/2025/05/01/us/politics/trump-cryptocurrency-usd1-dubai-conference-announcement.html
-const qatariPurchaseDateTimestamp = Math.floor(qatariPurchaseDate.getTime() / 1000);
+const qatariPurchaseDateTimestamp = Math.floor(qatariPurchaseDate.getTime() / 1000.0);
 
 stableCoinPrinciple = qatariStableCoinPurchase; // will need to add more based on current stablecoins in circulation
 const perSecondInterestEarned = perSecondRate * stableCoinPrinciple
 
-const increment = 100;
-const interval = 50; // Time in milliseconds
+const increment = 100.0;
+const interval = 50.0; // Time in milliseconds
 
 function updateMoneyDisplay() {
-    let currentTimestampInSeconds = Math.floor(Date.now() / 1000);
+    let currentTimestampInSeconds = Math.floor(Date.now() / 1000.0);
     secondsOfInterest = (currentTimestampInSeconds - qatariPurchaseDateTimestamp)
-    perSecondGain = (secondsOfInterest + perSecondInterestEarned);
+    perSecondGain = (secondsOfInterest * perSecondInterestEarned);
     currentMoney = revenueFromTradingFees + perSecondGain;
     console.log("perSecondProfit: " + perSecondGain);
 
@@ -81,7 +81,7 @@ function updateMoneyDisplay() {
     // }
 }
 
-const animationInterval = setInterval(updateMoneyDisplay, 1000);
+const animationInterval = setInterval(updateMoneyDisplay, 1000.0);
     </script>
   </body>
 </html>
