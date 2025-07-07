@@ -24,19 +24,19 @@
                 </div>
                 <div class="col-md-3 ">
                     <div class="count"> <span class="fa fa-smile-o"></span>
-                        <p class="number">100,000,000</p>
+                        <p class="number" id="tradingFees">100,000,000</p>
                         <h4>Trading Fees (Estimated)</h4> </div>
                 </div>
-<!--                 <div class="col-md-3 ">
+                 <div class="col-md-3 ">
                     <div class="count"> <span class="fa fa-smile-o"></span>
-                        <p class="number">896</p>
-                        <h4>Total Hours</h4> </div>
+                        <p class="number" id="foreignPurchases">896</p>
+                        <h4>Revenue from Foreign Purchases</h4> </div>
                 </div>
                 <div class="col-md-3 ">
                     <div class="count"> <span class="fa fa-smile-o"></span>
-                        <p class="number">777</p>
-                        <h4>Projects Complete</h4> </div>
-                </div> -->
+                        <p class="number" id="WLFRevenue">777</p>
+                        <h4>World Liberty Revenue</h4> </div>
+                </div>
             </div>
         </div>
     </section>
@@ -44,14 +44,20 @@
         
 const moneyDisplay = document.getElementById('moneyDisplay'); 
 let currentMoney = 0;
-const revenueFromTradingFees = 100000000; // per Reuters: www.reuters.com/markets/currencies/trumps-meme-coin-made-nearly-100-million-trading-fees-small-traders-lost-money-2025-02-03/
+const revenueFromTradingFees = 320000000; //https://www.nytimes.com/interactive/2025/07/02/business/donald-trump-wealth-net-worth.html
+// was 100,000,00, per Reuters: www.reuters.com/markets/currencies/trumps-meme-coin-made-nearly-100-million-trading-fees-small-traders-lost-money-2025-02-03/
+const revenueFromForeignPurchases = 100000000; // https://www.reuters.com/press-releases/aqua-1-announces-100m-strategic-world-liberty-financial-governance-token-purchase-to-help-shape-and-accelerate-decentralized-finance-adoption-2025-06-26/
+const worldLibertyTokenRevenue = 550000000; // https://www.nytimes.com/interactive/2025/07/02/business/donald-trump-wealth-net-worth.html
+$("#tradingFees").html(revenueFromTradingFees.toLocaleString()); 
+$("#foreignPurchases").html(revenueFromForeignPurchases.toLocaleString()); 
+$("#WLFRevenue").html(worldLibertyTokenRevenue.toLocaleString()); 
 const secondsInYear = 31536000; // 365 days in a year * 24 hours in a day * 60 minutes in an hour * 60 seconds in a minute
                                 // As a stand in for the number of periods increasing for holding the stablecoin collateral
                                 // in 1 month T-bills
 const oneMonthTBillRate = .0445; // pulling from here https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2025
 const perSecondRate = oneMonthTBillRate / secondsInYear
 let stableCoinPrinciple = 0.0;
-const qatariStableCoinPurchase =  2000000000; //2204586586.0;// 2000000000; // www.nytimes.com/2025/05/01/us/politics/trump-cryptocurrency-usd1-dubai-conference-announcement.html
+const qatariStableCoinPurchase =  2204586586.0;// https://www.coingecko.com/en/coins/usd1-wlfi// 2000000000; // www.nytimes.com/2025/05/01/us/politics/trump-cryptocurrency-usd1-dubai-conference-announcement.html
 const qatariPurchaseDate = new Date('2025.05.01'); // www.nytimes.com/2025/05/01/us/politics/trump-cryptocurrency-usd1-dubai-conference-announcement.html
 const qatariPurchaseDateTimestamp = Math.floor(qatariPurchaseDate.getTime() / 1000.0);
 
@@ -64,21 +70,16 @@ const interval = 50.0; // Time in milliseconds
 function updateMoneyDisplay() {
     let currentTimestampInSeconds = Math.floor(Date.now() / 1000.0);
     secondsOfInterest = (currentTimestampInSeconds - qatariPurchaseDateTimestamp)
-    perSecondGain = (secondsOfInterest * perSecondInterestEarned);
-    currentMoney = revenueFromTradingFees + perSecondGain;
-    console.log("perSecondProfit: " + perSecondGain);
+    interestEarned = (secondsOfInterest * perSecondInterestEarned);
+    currentMoney = revenueFromTradingFees + interestEarned;
+    console.log("perSecondProfit: " + interestEarned);
 
     // Use Intl.NumberFormat for currency formatting
-    const formattedMoney = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    }).format(currentMoney);
+    const formattedMoney = currentMoney.toLocaleString();
 
     moneyDisplay.textContent = formattedMoney;
 
-    // if (currentMoney >= targetMoney) {
-    //     clearInterval(animationInterval);
-    // }
+
 }
 
 const animationInterval = setInterval(updateMoneyDisplay, 1000.0);
