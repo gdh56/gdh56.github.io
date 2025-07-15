@@ -1,46 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
-<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.slim.min.js" 
+      integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" 
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
     <title>Professionalized Corruption Tracker</title>
-    <link rel="stylesheet" href="crypto_style.css">
+    <link rel="stylesheet" href="crypto_style.css" />
   </head>
   <body>
-<section id="counter" class="sec-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 ">
-                    <div class="count"> <span class="fa fa-smile-o"></span>
-                        <p class="number" id="moneyDisplay">0</p>
-                        <h4>Total Profit</h4> </div>
-                </div>
-                <div class="col-md-3 ">
-                    <div class="count"> <span class="fa fa-smile-o"></span>
-                        <p class="number" id="tradingFees">100,000,000</p>
-                        <h4>Trading Fees (Estimated)</h4> </div>
-                </div>
-                 <div class="col-md-3 ">
-                    <div class="count"> <span class="fa fa-smile-o"></span>
-                        <p class="number" id="foreignPurchases">896</p>
-                        <h4>Revenue from Foreign Purchases</h4> </div>
-                </div>
-                <div class="col-md-3 ">
-                    <div class="count"> <span class="fa fa-smile-o"></span>
-                        <p class="number" id="WLFRevenue">777</p>
-                        <h4>World Liberty Revenue</h4> </div>
-                </div>
+    <section id="counter" class="sec-padding">
+      <div class="container">
+        <div class="row justify-content-center mb-4">
+          <div class="col-12">
+            <div
+              class="count money-display-box h-100 d-flex flex-column justify-content-center align-items-center"
+            >
+              <span class="fa fa-smile-o"></span>
+              <p class="number" id="moneyDisplay"></p>
+              <h4>Total Profit</h4>
             </div>
+          </div>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+            <div class="count h-100 d-flex flex-column justify-content-center">
+              <span class="fa fa-smile-o"></span>
+              <p class="number" id="tradingFees">100,000,000</p>
+              <h4>Trading Fees (Estimated)</h4>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+            <div class="count h-100 d-flex flex-column justify-content-center">
+              <span class="fa fa-smile-o"></span>
+              <p class="number" id="foreignPurchases">896</p>
+              <h4>Revenue from Foreign Purchases</h4>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+            <div class="count h-100 d-flex flex-column justify-content-center">
+              <span class="fa fa-smile-o"></span>
+              <p class="number" id="WLFRevenue">777</p>
+              <h4>World Liberty Revenue</h4>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <script>
+<<<<<<< HEAD
         
 const moneyDisplay = document.getElementById('moneyDisplay'); 
 let currentMoney = 0;
@@ -60,29 +89,58 @@ let stableCoinPrinciple = 0.0;
 const qatariStableCoinPurchase =  2204586586.0;// https://www.coingecko.com/en/coins/usd1-wlfi// 2000000000; // www.nytimes.com/2025/05/01/us/politics/trump-cryptocurrency-usd1-dubai-conference-announcement.html
 const qatariPurchaseDate = new Date('2025.05.01'); // www.nytimes.com/2025/05/01/us/politics/trump-cryptocurrency-usd1-dubai-conference-announcement.html
 const qatariPurchaseDateTimestamp = Math.floor(qatariPurchaseDate.getTime() / 1000.0);
+=======
+      const moneyDisplay = document.getElementById("moneyDisplay");
+      let currentMoney = 0;
+      const revenueFromTradingFees = 320000000; //https://www.nytimes.com/interactive/2025/07/02/business/donald-trump-wealth-net-worth.html
+      // was 100,000,00, per Reuters: www.reuters.com/markets/currencies/trumps-meme-coin-made-nearly-100-million-trading-fees-small-traders-lost-money-2025-02-03/
+      const revenueFromForeignPurchases = 100000000; // https://www.reuters.com/press-releases/aqua-1-announces-100m-strategic-world-liberty-financial-governance-token-purchase-to-help-shape-and-accelerate-decentralized-finance-adoption-2025-06-26/
+      const worldLibertyTokenRevenue = 550000000; // https://www.nytimes.com/interactive/2025/07/02/business/donald-trump-wealth-net-worth.html
+      $("#tradingFees").html("$" + revenueFromTradingFees.toLocaleString());
+      $("#foreignPurchases").html(
+        "$" + revenueFromForeignPurchases.toLocaleString()
+      );
+      $("#WLFRevenue").html("$" + worldLibertyTokenRevenue.toLocaleString());
+      const secondsInYear = 31536000; // 365 days in a year * 24 hours in a day * 60 minutes in an hour * 60 seconds in a minute
+      // As a stand in for the number of periods increasing for holding the stablecoin collateral
+      // in 1 month T-bills
+      const oneMonthTBillRate = 0.0445; // pulling from here https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2025
+      const perSecondRate = oneMonthTBillRate / secondsInYear;
+      let stableCoinPrinciple = 0.0;
+      const qatariStableCoinPurchase = 2204586586.0; // https://www.coingecko.com/en/coins/usd1-wlfi// 2000000000; // www.nytimes.com/2025/05/01/us/politics/trump-cryptocurrency-usd1-dubai-conference-announcement.html
+      const qatariPurchaseDate = new Date("2025.05.01"); // www.nytimes.com/2025/05/01/us/politics/trump-cryptocurrency-usd1-dubai-conference-announcement.html
+      const qatariPurchaseDateTimestamp = Math.floor(
+        qatariPurchaseDate.getTime() / 1000.0
+      );
+>>>>>>> f31d162b88794154444d298213be06e1a739eb43
 
-stableCoinPrinciple = qatariStableCoinPurchase; // will need to add more based on current stablecoins in circulation
-const perSecondInterestEarned = perSecondRate * stableCoinPrinciple
+      stableCoinPrinciple = qatariStableCoinPurchase; // will need to add more based on current stablecoins in circulation
+      const perSecondInterestEarned = perSecondRate * stableCoinPrinciple;
 
-const increment = 100.0;
-const interval = 50.0; // Time in milliseconds
+      const increment = 100.0;
+      const interval = 50.0; // Time in milliseconds
 
-function updateMoneyDisplay() {
-    let currentTimestampInSeconds = Math.floor(Date.now() / 1000.0);
-    secondsOfInterest = (currentTimestampInSeconds - qatariPurchaseDateTimestamp)
-    interestEarned = (secondsOfInterest * perSecondInterestEarned);
-    currentMoney = revenueFromTradingFees + interestEarned;
-    console.log("perSecondProfit: " + interestEarned);
+      function updateMoneyDisplay() {
+        let currentTimestampInSeconds = Math.floor(Date.now() / 1000.0);
+        secondsOfInterest =
+          currentTimestampInSeconds - qatariPurchaseDateTimestamp;
+        interestEarned = secondsOfInterest * perSecondInterestEarned;
+        currentMoney = revenueFromTradingFees + interestEarned;
+        console.log("perSecondProfit: " + interestEarned);
 
+<<<<<<< HEAD
     // Use Intl.NumberFormat for currency formatting
     const formattedMoney = '$' + currentMoney.toLocaleString();
+=======
+        // Use Intl.NumberFormat for currency formatting
+        const formattedMoney =
+          "$" + currentMoney.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+>>>>>>> f31d162b88794154444d298213be06e1a739eb43
 
-    moneyDisplay.textContent = formattedMoney;
-
-
-}
-
-const animationInterval = setInterval(updateMoneyDisplay, 1000.0);
+        moneyDisplay.textContent = formattedMoney;
+      }
+      updateMoneyDisplay();
+      const animationInterval = setInterval(updateMoneyDisplay, 1000.0);
     </script>
   </body>
 </html>
