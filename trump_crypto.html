@@ -103,8 +103,7 @@ const qatariPurchaseDateTimestamp = Math.floor(qatariPurchaseDate.getTime() / 10
         currentMoney = revenueFromTradingFees + interestEarned;
         console.log("perSecondProfit: " + interestEarned);
 
-    // Use Intl.NumberFormat for currency formatting
-        const formattedMoney = '$' + currentMoney.toLocaleString();
+        let formattedMoney = '$' + currentMoney.toLocaleString();
 
 
         moneyDisplay.textContent = formattedMoney;
