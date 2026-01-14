@@ -76,15 +76,39 @@ const revenueFromTradingFees = 320000000; //https://www.nytimes.com/interactive/
 // was 100,000,00, per Reuters: www.reuters.com/markets/currencies/trumps-meme-coin-made-nearly-100-million-trading-fees-small-traders-lost-money-2025-02-03/
 const revenueFromForeignPurchases = 100000000; // https://www.reuters.com/press-releases/aqua-1-announces-100m-strategic-world-liberty-financial-governance-token-purchase-to-help-shape-and-accelerate-decentralized-finance-adoption-2025-06-26/
 const worldLibertyTokenRevenue = 550000000; // https://www.nytimes.com/interactive/2025/07/02/business/donald-trump-wealth-net-worth.html
+const defaultUSD1QuantityForFallback = 3700000000;
+const supplyField = 'circulating_supply';
 $("#tradingFees").html('$' + revenueFromTradingFees.toLocaleString()); 
 $("#foreignPurchases").html('$' + revenueFromForeignPurchases.toLocaleString()); 
 $("#WLFRevenue").html('$' + worldLibertyTokenRevenue.toLocaleString()); 
 const secondsInYear = 31536000; // 365 days in a year * 24 hours in a day * 60 minutes in an hour * 60 seconds in a minute
                                 // As a stand in for the number of periods increasing for holding the stablecoin collateral
                                 // in 1 month T-bills
-const oneMonthTBillRate = .0445; // pulling from here https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2025
-const perSecondRate = oneMonthTBillRate / secondsInYear
+const twelveMonthAnnualReturnFRGXX = .0424; // taken from https://fundresearch.fidelity.com/mutual-funds/summary/31607A703 (accessed Jan. 13, 2026)
+const perSecondRate = twelveMonthAnnualReturnFRGXX / secondsInYear
 let stableCoinPrinciple = 0.0;
+const coinGeckApiUrl = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=usd1-wlfi";
+const apiOptions = { "headers": {"x-api-key": "CG-ECJq3yLPcbdMuWpMdR8ew4Wo"}};
+let usd1Quantity = defaultUSD1QuantityForFallback;
+function callGeckoApi(url, options, handler) {
+  try {
+    return fetch(url, options).then(res => res.json()).then(data => handler(data))
+
+  } catch (error) {
+    console.log(error);
+    console.log('Failed to pull from gecko Api so using fallback ' + usd1Quantity);
+  } 
+}
+
+function handleApiResponse(geckData) {
+  try{
+    return geckData[0][supplyField];
+  } catch (error) {
+    console.log(error);
+    return defaultUSD1QuantityForFallback;
+  }
+
+};
 const qatariStableCoinPurchase =  2204586586.0;// https://www.coingecko.com/en/coins/usd1-wlfi// 2000000000; // www.nytimes.com/2025/05/01/us/politics/trump-cryptocurrency-usd1-dubai-conference-announcement.html
 const qatariPurchaseDate = new Date('2025.05.01'); // www.nytimes.com/2025/05/01/us/politics/trump-cryptocurrency-usd1-dubai-conference-announcement.html
 const qatariPurchaseDateTimestamp = Math.floor(qatariPurchaseDate.getTime() / 1000.0);
@@ -101,15 +125,17 @@ const qatariPurchaseDateTimestamp = Math.floor(qatariPurchaseDate.getTime() / 10
         currentTimestampInSeconds - qatariPurchaseDateTimestamp;
         interestEarned = secondsOfInterest * perSecondInterestEarned;
         currentMoney = revenueFromTradingFees + interestEarned;
-        console.log("perSecondProfit: " + interestEarned);
+        //console.log("perSecondProfit: " + interestEarned);
 
         let formattedMoney = '$' + currentMoney.toLocaleString();
 
-
+        callGeckoApi(coinGeckApiUrl, apiOptions, handleApiResponse)
         moneyDisplay.textContent = formattedMoney;
     }
     updateMoneyDisplay();
     const animationInterval = setInterval(updateMoneyDisplay, 1000.0);
+
+
 </script>
 </body>
 </html>
